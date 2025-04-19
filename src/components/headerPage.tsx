@@ -33,7 +33,7 @@ export default function HeaderPage() {
     return <div className={cn("flex justify-between px-16 max-md:px-2 z-40 text-center",
         "items-center pt-4 pb-4 border-b w-full top-0 left-0 fixed",
         "bg-white border-[1px] border-gray-300 shadow-md")}>
-        <div className="max-md:flex max-md:justify-between max-md:items-center max-md:w-full max-md:px-2">
+        <div className="max-md:flex max-md:justify-between max-md:items-center max-md:w-full max-md:px-2 lg:hidden xl:hidden 2xl:hidden">
             <div>
                 <Logo />
             </div>

@@ -24,9 +24,15 @@ export const signup = async (values: z.infer<typeof SignupSchema>) => {
         });
         const responseData = await signupResponse.json();
         if (!signupResponse.ok) {
-            return { error: responseData.message }
+            return {
+                message: responseData.message,
+                success: false,
+            }
         };
-        return responseData
+        return {
+            success: true,
+            message: responseData.message
+        }
     } catch (error) {
         console.error(error)
         return { error: error }

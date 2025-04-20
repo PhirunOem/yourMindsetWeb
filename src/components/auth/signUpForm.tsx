@@ -43,8 +43,8 @@ export default function SignUpForm() {
         }
         try {
             const result = await signup(request_data)
-            if (result && result.error) {
-                setError(result.error)
+            if (result && !result.success) {
+                setError(result.message)
                 setIsSubmitting(false)
             } else {
                 router.push('/auth/signin')

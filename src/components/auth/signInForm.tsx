@@ -17,7 +17,6 @@ import { cn, SigninSchema } from "@/utils";
 import OrSeparator from "./orSeparator";
 import { signin } from "@/actions/signin";
 import logo from '@/assets/svgs/logo.svg'
-import Link from "next/link";
 
 
 export default function SignIn() {
@@ -53,9 +52,10 @@ export default function SignIn() {
             setIsSubmitting(false)
         } else {
             setIsSubmitting(false)
-            setAuthenticated(true)
+            // setAuthenticated(true)
             setError('')
-            return true
+            // return true
+            window.location.href = '/';
         }
     };
     const handleClickSignUp = () => {

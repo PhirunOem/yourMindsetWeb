@@ -38,7 +38,8 @@ export default function SignIn() {
     useEffect(() => {
         async function checkAuthentication() {
             if (authenticated) {
-                router.push('/')
+                const next = searchParams.get("next") || "/";
+                window.location.href = next;
             }
         }
         checkAuthentication();

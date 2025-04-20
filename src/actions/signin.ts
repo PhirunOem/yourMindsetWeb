@@ -3,6 +3,7 @@ import * as z from 'zod';
 
 import { SigninSchema } from '@/utils';
 import { cookies } from 'next/headers';
+import { redirect } from 'next/navigation';
 
 export const signin = async (values: z.infer<typeof SigninSchema>) => {
   const cookieStore = await cookies()
@@ -39,11 +40,8 @@ export const signin = async (values: z.infer<typeof SigninSchema>) => {
       maxAge: 3600,
     });
 
+    redirect('/')
 
-    return {
-      success: true,
-      message: data.message || 'Sign in successfully'
-    }
   } catch (err) {
     console.error("Login error", err);
   }

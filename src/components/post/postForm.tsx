@@ -10,10 +10,15 @@ import TextInput from "../input/TextInput";
 import { cn, PostSchema } from "@/utils";
 import Button from "../button/Button";
 import { createPost } from "@/actions/createPost";
+import { useRouter } from "next/navigation";
+import Link from "next/link";
+import Image from "next/image"
+import backIcon from '@/assets/svgs/backIcon.svg'
 
 export default function PostForm() {
     const [error, setError] = useState("");
     const [isSubmitting, setIsSubmitting] = useState<boolean>(false)
+    const router = useRouter();
 
     const form = useForm<z.infer<typeof PostSchema>>({
         resolver: zodResolver(PostSchema),
@@ -37,6 +42,7 @@ export default function PostForm() {
             } else {
                 setIsSubmitting(false)
                 setError('')
+                router.push('/')
                 return true
             }
         } catch (error) {
@@ -49,7 +55,17 @@ export default function PostForm() {
         "justify-around w-screen items-center justify-center text-center gap-32 px-8",
     )}>
         <div className="w-1/3 space-y-6 max-md:w-3/4">
-            <div>
+            <div className='flex-1'>
+                <Link href={'/'}>
+                    <Image
+                        src={backIcon}
+                        alt="Back Icon"
+                        width={30}
+                        height={30}
+                    />
+                </Link>
+            </div>
+            <div className="flex justify-between items-cente">
                 <p className="text-3xl font-semibold mb-8">Create your post</p>
             </div>
             <FormProvider {...form}>

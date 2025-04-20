@@ -28,12 +28,9 @@ export default function LoginPage() {
             const data = await res.json()
 
             if (!res.ok) {
-                console.log('>>> res >>>>', data)
-                // alert("Login failed");
                 return;
             }
 
-            console.log('>>> res >>>>', data)
             Cookies.set("accessToken", data?.access, { secure: true, sameSite: "Lax" });
 
             // // Now fetch user profile with the session cookie

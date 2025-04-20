@@ -19,7 +19,6 @@ export default function Profile() {
         if (user) {
             // fetch user profile if access token is available
             //   getUserProfile(session.);
-            console.log('>>> user signin :::')
         } else {
             // Redirect to `/signin` if no access token or no session
             router.push("/auth/signin?next=" + pathname);

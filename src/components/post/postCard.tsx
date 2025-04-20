@@ -100,7 +100,6 @@ export default function PostCard({
                 content: content,
                 postId: id
             })
-            console.log('>>> data >>', data, success)
             if (success) {
                 setIsLoading(false)
                 setError('')

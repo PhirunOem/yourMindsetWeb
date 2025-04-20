@@ -16,16 +16,16 @@ import lineMenuIcon from '@/assets/svgs/lineMenuIcon.svg'
 import crossIcon from '@/assets/svgs/cross.svg'
 
 export default function HeaderPage() {
-    const session = useAuth()
-    const userName = session.user?.name
+    const { user } = useAuth()
+    const userName = user?.name
     const router = useRouter()
     const [isAuthenticated, setIsAuthenticated] = useState<boolean>(false)
     const [isOpenMenu, setIsOpenMenu] = useState<boolean>(false)
     React.useEffect(() => {
-        if (session.user) {
+        if (user) {
             setIsAuthenticated(true)
         }
-    }, [session])
+    }, [user])
 
     const handleOpenMenuClick = () => {
         setIsOpenMenu(!isOpenMenu)

@@ -15,8 +15,8 @@ export async function getServerUser() {
         });
 
         if (!res.ok) return null;
-
-        return await res.json();
+        const user = await res.json();
+        return user;
     } catch {
         return null;
     }

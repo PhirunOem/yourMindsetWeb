@@ -34,11 +34,28 @@ export default function SignIn() {
     const [isSubmitting, setIsSubmitting] = useState<boolean>(false)
     const router = useRouter()
 
-    const next = searchParams.get("next") || "/";
+    useEffect(() => {
+        async function checkAuthentication() {
+            if (authenticated) {
+                const next = searchParams.get("next") || "/";
+                window.location.href = next;
+            }
+        }
+        checkAuthentication();
+    }, [searchParams, authenticated]);
 
     const onSubmit = async (values: z.infer<typeof SigninSchema>) => {
         setIsSubmitting(true)
-        await signin(values, next)
+        const result = await signin(values)
+        if (result && !result.success) {
+            setError(result.message)
+            setIsSubmitting(false)
+        } else {
+            setIsSubmitting(false)
+            setAuthenticated(true)
+            setError('')
+            return true
+        }
     };
     const handleClickSignUp = () => {
         router.push('/auth/signup')

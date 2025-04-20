@@ -45,8 +45,16 @@ export default function SignIn() {
     }, [searchParams, authenticated]);
 
     const onSubmit = async (values: z.infer<typeof SigninSchema>) => {
-        setIsSubmitting(true)
-        const result = await signin(values)
+        setIsSubmitting(true);
+        const res = await fetch('/api/signin', {
+            method: 'POST',
+            body: JSON.stringify(values),
+            headers: {
+                'Content-Type': 'application/json',
+            },
+        });
+
+        const result = await res.json();
         if (result && !result.success) {
             setError(result.message)
             setIsSubmitting(false)
@@ -56,7 +64,7 @@ export default function SignIn() {
             setError('')
             return true
         }
-    };
+    }
     const handleClickSignUp = () => {
         router.push('/auth/signup')
     }

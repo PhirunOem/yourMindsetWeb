@@ -80,7 +80,7 @@ export default function ListPosts() {
         });
     }
     return <div>
-        {data?.data && data?.data?.length > 0 ? (
+        {data?.data && data?.data?.length > 0 && (
             data.data.map((item: PostType, index: number) => (
                 <div key={index} className="mt-2">
                     <PostCard {...item}
@@ -89,9 +89,7 @@ export default function ListPosts() {
                         handleEditPost={handleEditPost}
                     />
                 </div>
-            ))
-        ) : (
-            <p>Loading...</p>
-        )}
+            )))
+        }
     </div>
 }

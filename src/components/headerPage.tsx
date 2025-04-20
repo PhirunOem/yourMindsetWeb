@@ -49,7 +49,7 @@ export default function HeaderPage() {
                         />
                     }
                     content={
-                        <div className={cn("flex flex-col px-4 py-2 justify-start w-[280px] items-start",
+                        <div className={cn("flex flex-col px-4 py-2 justify-start w-[280px] items-start gap-2",
                             "border border-gray-300 shadow-md mr-2 rounded-md bg-white mt-2")}>
                             <Link href={"/testLevel"} className="">Test</Link>
                             <Link href={"/termAndConditions"} className="">Term And Condition</Link>

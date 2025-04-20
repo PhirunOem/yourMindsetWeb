@@ -5,7 +5,7 @@ import { SigninSchema } from '@/utils';
 import { cookies } from 'next/headers';
 import { redirect } from 'next/navigation';
 
-export const signin = async (values: z.infer<typeof SigninSchema>) => {
+export const signin = async (values: z.infer<typeof SigninSchema>, next = '/') => {
   const cookieStore = await cookies()
   const validatedFields = SigninSchema.safeParse(values);
 
@@ -40,7 +40,7 @@ export const signin = async (values: z.infer<typeof SigninSchema>) => {
       maxAge: 3600,
     });
 
-    redirect('/')
+    redirect(next)
 
   } catch (err) {
     console.error("Login error", err);

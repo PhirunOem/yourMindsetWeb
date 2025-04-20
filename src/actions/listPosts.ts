@@ -2,9 +2,7 @@
 
 import { PostType } from "@/types/post";
 
-export const listPost = async () => {
-    const url = `${process.env.API_BASE_URL}/post/list-posts-without-auth/`;
-
+export const listPost = async (url: string) => {
     try {
         const postResponse = await fetch(url, {
             method: 'GET',

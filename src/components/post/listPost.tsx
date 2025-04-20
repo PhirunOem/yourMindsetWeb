@@ -1,30 +1,26 @@
 import React, { useEffect, useState } from "react";
 
+import { z } from "zod";
+import useSWR from "swr";
 
-import { listPost } from "@/actions/listPosts";
 import PostCard from "./postCard";
 import { postComment } from "@/actions/postComment";
 import { deletePost } from "@/actions/deletePost";
 import { PostSchema } from "@/utils";
-import { z } from "zod";
 import { editPost } from "@/actions/editPost";
 import { PostType } from "@/types/post";
 import { CommentType } from "@/types/comment";
 import { useAuth } from "@/context/AuthContext";
+import { listPost } from "@/actions/listPosts";
+import HomePageLoading from "../HomePageLoading";
 
 export default function ListPosts() {
     const [postData, setPostData] = useState<PostType[]>([]);
     const session = useAuth()
-
-    useEffect(() => {
-        async function fetchData() {
-            await listPost().then((res) => {
-                if (res?.data?.length === 0 || !res) return []
-                setPostData(res.data ?? []);
-            })
-        }
-        fetchData();
-    }, []);
+    const url = `${process.env.NEXT_PUBLIC_API_BASE_URL}/post/list-posts-without-auth/`;
+    const { data, error } = useSWR(url, listPost)
+    if (!data) return <HomePageLoading />
+    if (error) return <div className="flex flex-col justify-center items-center text-red-500">Something went wrong. We are so sorry for that.</div>
 
     async function handleCreateComment(content: CommentType) {
         const postData = {
@@ -84,10 +80,9 @@ export default function ListPosts() {
         });
     }
     return <div>
-        {postData.length > 0 ? (
-            postData.map((item: PostType, index: number) => (
+        {data?.data && data?.data?.length > 0 ? (
+            data.data.map((item: PostType, index: number) => (
                 <div key={index} className="mt-2">
-
                     <PostCard {...item}
                         handleComment={handleCreateComment}
                         handleDeletePost={() => handleDeletePost(item.id)}

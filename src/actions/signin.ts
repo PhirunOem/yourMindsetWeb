@@ -32,7 +32,13 @@ export const signin = async (values: z.infer<typeof SigninSchema>) => {
         message: data.message || 'Something went wrong.'
       }
     }
-    cookieStore.set('accessToken', data?.access, { secure: true, sameSite: 'lax' })
+    cookieStore.set("accessToken", data?.access, {
+      httpOnly: true,
+      secure: process.env.NODE_ENV === "production",
+      path: "/",
+      maxAge: 3600,
+    });
+
 
     return {
       success: true,

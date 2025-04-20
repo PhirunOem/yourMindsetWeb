@@ -52,10 +52,9 @@ export default function SignIn() {
             setIsSubmitting(false)
         } else {
             setIsSubmitting(false)
-            // setAuthenticated(true)
+            setAuthenticated(true)
             setError('')
-            // return true
-            window.location.href = '/';
+            return true
         }
     };
     const handleClickSignUp = () => {

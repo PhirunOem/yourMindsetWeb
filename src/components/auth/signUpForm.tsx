@@ -42,9 +42,14 @@ export default function SignUpForm() {
             password: values.password,
         }
         try {
-            const result = await signup(request_data)
-            if (result && !result.success) {
-                setError(result.message)
+            const result = await fetch('/api/signup', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify(request_data),
+            });
+            const data = await result.json();
+            if (data && !data.success) {
+                setError(data.message)
                 setIsSubmitting(false)
             } else {
                 router.push('/auth/signin')

@@ -26,6 +26,7 @@ import { CommentType } from "@/types/comment";
 import { PostType } from "@/types/post";
 import { useAuth } from "@/context/AuthContext";
 import PopoverCustom from "../popover";
+import SeeMoreText from "../SeemoreSeeless";
 /* eslint-disable @typescript-eslint/no-explicit-any */
 interface PostCardProps extends PostType {
     handleComment?: (comment: CommentType) => any;
@@ -206,7 +207,7 @@ export default function PostCard({
                                 )}
                                 disabled={isEditing}
                             /> : <p className="whitespace-pre-line px-4 max-md:p-0 whitespace-pre-wrap">
-                                {detail}
+                                <SeeMoreText wordLimit={50} text={detail} />
                             </p>
                         }
                         {

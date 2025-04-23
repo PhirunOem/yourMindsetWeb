@@ -190,6 +190,7 @@ export default function PostCard({
                                         form.setValue('title', e.target.value)
                                     }}
                                     disabled={isEditing}
+                                    placeholder="Enter your title here..."
                                 />
                             )}
                         /> : <p className="text-xl font-bold py-4">{title}</p>}
@@ -206,9 +207,9 @@ export default function PostCard({
                                     ></textarea>
                                 )}
                                 disabled={isEditing}
-                            /> : <p className="whitespace-pre-line px-4 max-md:p-0 whitespace-pre-wrap">
+                            /> : <div className="whitespace-pre-line px-4 max-md:p-0 whitespace-pre-wrap">
                                 <SeeMoreText wordLimit={50} text={detail} />
-                            </p>
+                            </div>
                         }
                         {
                             isEdit && <div className="flex justify-end gap-4">

@@ -83,7 +83,7 @@ export default function PostForm() {
                         name="detail"
                         control={form.control}
                         render={({ field }) => (
-                            <textarea {...field} placeholder="Type your detail here..." maxLength={1000} minLength={5}
+                            <textarea {...field} placeholder="Type your detail here..." maxLength={3000} minLength={5}
                                 rows={100}
                                 className={cn("border-[#BCBCBC] border-[1px] h-[300px]",
                                     " px-[6px] py-[6px] focus:outline-none focus:ring-1 font-poppins w-full",

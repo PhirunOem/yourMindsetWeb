@@ -17,6 +17,9 @@ import { cn, SigninSchema } from "@/utils";
 import OrSeparator from "./orSeparator";
 import { signin } from "@/actions/signin";
 import logo from '@/assets/svgs/logo.svg'
+import crossIcon from '@/assets/svgs/cross.svg'
+import Link from "next/link";
+
 
 
 export default function SignIn() {
@@ -69,65 +72,102 @@ export default function SignIn() {
         router.push('/auth/signup')
     }
     return (
-        <div className={cn("mx-auto w-[200px] h-screen border-red-100 flex",
-            "justify-around w-screen items-center justify-center text-center gap-32 px-8",
-        )}>
-            <div className={cn("max-md:hidden ")}>
-                <Image
-                    src={signIn}
-                    alt="Sign in"
-                    width={450}
-                    height={450}
-                />
+        <div className="flex flex-col min-h-screen">
+            {/* Close Icon */}
+            <div className="w-[200px] ml-5 mt-5">
+                <Link href={'/'}>
+                    <Image src={crossIcon} width={15} height={15} alt="Cross icon" /></Link>
             </div>
-            <div className="w-1/3 space-y-6 max-md:w-3/4">
-                <div className="flex justify-center items-center lg:hidden">
-                    <Image src={logo} alt={"Logo"} className="w-[60px] h-[60px] max-md:w-[60px] max-md:w-[40px]" />
+
+            {/* Main Content */}
+            <div className="flex flex-col md:flex-row items-center justify-center text-center gap-16 px-8 w-full flex-1">
+
+                {/* Left Image (Hidden on mobile) */}
+                <div className="hidden md:block">
+                    <Image
+                        src={signIn}
+                        alt="Sign in"
+                        width={450}
+                        height={450}
+                        className="rounded-xl object-cover"
+                    />
                 </div>
-                <div>
-                    <p className="text-3xl font-semibold mb-8">Welcome Back</p>
-                </div>
-                <FormProvider {...form}>
-                    <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-4">
-                        <Controller
-                            name="email"
-                            control={form.control}
-                            render={({ field }) => (
-                                <TextInput {...field} placeholder="Email"
-                                    error={form.formState.errors.email?.message}
+
+                {/* Form Section */}
+                <div className="w-full md:w-1/3 space-y-6">
+                    {/* Logo for Mobile */}
+                    <div className="flex justify-center items-center md:hidden">
+                        <Image src={logo} alt="Logo" width={60} height={60} />
+                    </div>
+
+                    {/* Welcome Text */}
+                    <div>
+                        <p className="text-3xl font-semibold mb-8">Welcome Back</p>
+                    </div>
+
+                    {/* Form */}
+                    <FormProvider {...form}>
+                        <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-4">
+                            <Controller
+                                name="email"
+                                control={form.control}
+                                render={({ field }) => (
+                                    <TextInput
+                                        {...field}
+                                        placeholder="Email"
+                                        error={form.formState.errors.email?.message}
+                                    />
+                                )}
+                            />
+                            <Controller
+                                name="password"
+                                control={form.control}
+                                render={({ field }) => (
+                                    <TextInput
+                                        {...field}
+                                        placeholder="Password"
+                                        type="password"
+                                        error={form.formState.errors.password?.message}
+                                    />
+                                )}
+                            />
+                            <div>
+                                <Button
+                                    type="submit"
+                                    title={isSubmitting ? 'Logging In...' : 'Log In'}
+                                    disabled={isSubmitting}
                                 />
-                            )}
+                            </div>
+                        </form>
+                    </FormProvider>
+
+                    {/* Or Separator */}
+                    <div>
+                        <OrSeparator />
+                    </div>
+
+                    {/* Sign Up Prompt */}
+                    <div>
+                        <p>Not yet have account?</p>
+                    </div>
+
+                    <div>
+                        <Button
+                            title="Sign Up"
+                            className="text-[#30A5FF] bg-[#D3ECFF]"
+                            onClick={handleClickSignUp}
                         />
-                        <Controller
-                            name="password"
-                            control={form.control}
-                            render={({ field }) => (
-                                <TextInput
-                                    {...field}
-                                    placeholder={'Password'}
-                                    type="password"
-                                    error={form.formState.errors.password?.message}
-                                />
-                            )}
-                        />
+                    </div>
+
+                    {/* Error Message */}
+                    {error && (
                         <div>
-                            <Button type="submit" title={isSubmitting ? 'Logging In...' : 'Log In'} disabled={isSubmitting} />
+                            <p className="text-red-800">{error}</p>
                         </div>
-                    </form>
-                </FormProvider>
-                <div>
-                    <OrSeparator />
+                    )}
                 </div>
-                <div>
-                    <p>Not yet have account ?</p>
-                </div>
-                <div>
-                    <Button title="Sign Up" className="text-[#30A5FF] bg-[#D3ECFF]" onClick={handleClickSignUp} />
-                </div>
-                {error && <div>
-                    <p className="text-red-800">{error}</p>
-                </div>}
             </div>
         </div>
+
     );
 }

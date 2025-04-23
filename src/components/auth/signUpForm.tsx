@@ -17,6 +17,8 @@ import logo from '@/assets/svgs/logo.svg'
 import { cn, SignupSchema } from "@/utils";
 import OrSeparator from "./orSeparator";
 import Link from "next/link";
+import crossIcon from '@/assets/svgs/cross.svg'
+
 
 export default function SignUpForm() {
     const router = useRouter()
@@ -63,82 +65,124 @@ export default function SignUpForm() {
     };
 
     return (
-        <div className={cn("mx-auto w-[200px] h-screen border-red-100 flex flex-row-reverse",
-            "justify-around w-screen items-center justify-center text-center gap-32 px-8",
-        )}>
-            <div className={cn("max-md:hidden ")}>
-                <Image
-                    src={signUpImage}
-                    alt="Sign in"
-                    width={500}
-                    height={500}
-                />
+        <div className="flex flex-col min-h-screen">
+            {/* Cross Icon */}
+            <div className="w-[200px] ml-5 mt-5">
+                <Link href="/">
+                    <Image src={crossIcon} width={15} height={15} alt="Cross icon" />
+                </Link>
             </div>
-            <div className="w-1/3 space-y-6 max-md:w-3/4">
-                <div className="flex justify-center items-center">
-                    <Image src={logo} alt={"Logo"} className="w-[60px] h-[60px] max-md:w-[60px] max-md:w-[40px]" />
-                </div>
-                <div>
-                    <p className="text-3xl font-semibold mb-8">Create Account</p>
-                </div>
-                <div>
-                    <p className="font-semibold">Sign up and log in to post your idea.</p>
-                </div>
-                <FormProvider {...form}>
-                    <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-4">
-                        <Controller
-                            name="name"
-                            control={form.control}
-                            render={({ field }) => (
-                                <TextInput {...field} placeholder="Username"
-                                    error={form.formState.errors.name?.message}
-                                />
-                            )}
-                        />
-                        <Controller
-                            name="email"
-                            control={form.control}
-                            render={({ field }) => (
-                                <TextInput {...field} placeholder="Email"
-                                    error={form.formState.errors.email?.message}
-                                />
-                            )}
-                        />
-                        <Controller
-                            name="password"
-                            control={form.control}
-                            render={({ field }) => (
-                                <TextInput
-                                    {...field}
-                                    placeholder={'Password'}
-                                    type="password"
-                                    error={form.formState.errors.password?.message}
-                                />
-                            )}
-                        />
-                        <div>
-                            <Link href={'/termAndCondition'}>
-                                Term and condition
-                            </Link>
-                        </div>
-                        <div>
-                            <Button title={isSubmitting ? 'Creating your account...' : 'Create'} type="submit" disabled={isSubmitting} />
-                        </div>
-                    </form>
 
-                </FormProvider>
-                <div>
-                    <OrSeparator />
+            {/* Main Content */}
+            <div className="flex flex-col-reverse md:flex-row-reverse items-center justify-center text-center gap-16 px-8 w-full flex-1">
+
+                {/* Right Image (Hidden on mobile) */}
+                <div className="hidden md:block">
+                    <Image
+                        src={signUpImage}
+                        alt="Sign up"
+                        width={500}
+                        height={500}
+                        className="rounded-xl object-cover"
+                    />
                 </div>
-                <div>
-                    <p>
-                        Already have an account? <Link href={'/auth/signin'} className="text-[#30A5FF]">Sign in</Link>
-                    </p>
+
+                {/* Form Section */}
+                <div className="w-full md:w-1/3 space-y-6">
+                    {/* Logo */}
+                    <div className="flex justify-center items-center">
+                        <Image src={logo} alt="Logo" width={60} height={60} />
+                    </div>
+
+                    {/* Headings */}
+                    <div>
+                        <p className="text-3xl font-semibold mb-8">Create Account</p>
+                    </div>
+
+                    <div>
+                        <p className="font-semibold">Sign up and log in to post your idea.</p>
+                    </div>
+
+                    {/* Form */}
+                    <FormProvider {...form}>
+                        <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-4">
+                            <Controller
+                                name="name"
+                                control={form.control}
+                                render={({ field }) => (
+                                    <TextInput
+                                        {...field}
+                                        placeholder="Username"
+                                        error={form.formState.errors.name?.message}
+                                    />
+                                )}
+                            />
+                            <Controller
+                                name="email"
+                                control={form.control}
+                                render={({ field }) => (
+                                    <TextInput
+                                        {...field}
+                                        placeholder="Email"
+                                        error={form.formState.errors.email?.message}
+                                    />
+                                )}
+                            />
+                            <Controller
+                                name="password"
+                                control={form.control}
+                                render={({ field }) => (
+                                    <TextInput
+                                        {...field}
+                                        placeholder="Password"
+                                        type="password"
+                                        error={form.formState.errors.password?.message}
+                                    />
+                                )}
+                            />
+
+                            {/* Terms Link */}
+                            <div>
+                                <Link href="/termAndConditions" className="underline">
+                                    Terms and Conditions
+                                </Link>
+                            </div>
+
+                            {/* Submit Button */}
+                            <div>
+                                <Button
+                                    title={isSubmitting ? 'Creating your account...' : 'Create'}
+                                    type="submit"
+                                    disabled={isSubmitting}
+                                />
+                            </div>
+                        </form>
+                    </FormProvider>
+
+                    {/* Or Separator */}
+                    <div>
+                        <OrSeparator />
+                    </div>
+
+                    {/* Already have account */}
+                    <div>
+                        <p>
+                            Already have an account?{" "}
+                            <Link href="/auth/signin" className="text-[#30A5FF]">
+                                Sign in
+                            </Link>
+                        </p>
+                    </div>
+
+                    {/* Error Message */}
+                    {error && (
+                        <div>
+                            <p className="text-red-800">{error}</p>
+                        </div>
+                    )}
                 </div>
-                {error && <div>
-                    <p className="text-red-800">{error}</p>
-                </div>}
             </div>
         </div>
+
     );
 }

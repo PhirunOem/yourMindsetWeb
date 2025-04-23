@@ -25,6 +25,8 @@ export const editPost = async ({
             'title': title,
             'detail': detail
         })
+
+        console.log('----------- body ---------------', body)
         const postResponse = await fetch(url, {
             method: 'POST',
             headers: {
@@ -34,6 +36,7 @@ export const editPost = async ({
             body
         });
 
+        console.log('----------- postResponse ---------- ', postResponse, token.value)
         if (!postResponse.ok) {
             return;
         }

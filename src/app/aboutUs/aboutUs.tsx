@@ -2,8 +2,8 @@ import Image from "next/image"
 import Link from "next/link";
 
 
-import aboutUs1 from '@/assets/images/about1.jpg';
-import aboutUs2 from '@/assets/images/about2.jpg';
+import aboutUs1 from '../../assets/images/about1.jpg';
+import aboutUs2 from '../../assets/images/about2.jpg';
 import backIcon from "@/assets/svgs/backIcon.svg";
 
 export default function AboutUs() {

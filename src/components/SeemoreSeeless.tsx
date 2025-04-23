@@ -1,3 +1,4 @@
+import { cn } from "@/utils";
 import React, { useMemo, useState } from "react";
 
 interface SeeMoreTextProps {
@@ -17,7 +18,12 @@ const SeeMoreText: React.FC<SeeMoreTextProps> = ({ text, wordLimit = 100 }) => {
 
     return (
         <div className="whitespace-pre-wrap text-base font-normal leading-relaxed">
-            {displayedText}
+            <div onClick={() => {
+                if (!expanded) return;
+                setExpanded(false)
+            }} className={cn(expanded && 'cursor-pointer')}>
+                {displayedText}
+            </div>
             {isLong && (
                 <button
                     className="text-blue-600 mt-2 hover:underline focus:outline-none"

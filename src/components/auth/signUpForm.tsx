@@ -117,9 +117,9 @@ export default function SignUpForm() {
                             )}
                         />
                         <div>
-                            <p>
+                            <Link href={'/termAndCondition'}>
                                 Term and condition
-                            </p>
+                            </Link>
                         </div>
                         <div>
                             <Button title={isSubmitting ? 'Creating your account...' : 'Create'} type="submit" disabled={isSubmitting} />

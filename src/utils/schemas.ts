@@ -53,7 +53,7 @@ export const UserResponseSchema = z.object({
 
 
 export const PostSchema = z.object({
-  title: z.string({ message: 'Title is required!' }),
-  detail: z.string().max(500, { message: 'Detail is required' }),
+  title: z.string().min(1, { message: 'Title is required' }),
+  detail: z.string().min(1, { message: 'Detail is required' }).max(1000),
   post_id: z.string().optional()
 })

@@ -14,7 +14,7 @@ const ProfileAvartar = ({ userName, href, className }: ProfileAvartarProps) => {
     const router = useRouter()
     return <button
         className={cn("w-[40px] h-[40px] rounded-full border-[1px]",
-            "border-gray-300 items-center content-center bg-gray-300",
+            "border-gray-300 items-center content-center bg-gray-300 cursor-pointer hover:border-[3px]",
             className)}
         aria-label="profile"
         onClick={() => router.push(href ?? '/profile')}

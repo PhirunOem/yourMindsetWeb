@@ -136,7 +136,7 @@ export default function PostCard({
         }
     }
 
-    return <div className="shawdow-md px-8 py-4 rounded-xl bg-white border-gray-300 border">
+    return <div className="shawdow-md px-8 py-4 rounded-xl bg-white border-gray-300 border max-md:px-4">
         <div className="flex justify-between items-center">
             <div className="flex gap-2 items-center">
                 <ProfileAvartar href="/" userName={ownerName} />
@@ -176,7 +176,7 @@ export default function PostCard({
             <div>
                 {image && <Image src={SignIn} alt={"Menu Icon"} width={300} height={200} />}
             </div>
-            <div className="px-6 py-4">
+            <div className="px-6 py-4 max-md:px-2">
                 <FormProvider {...form}>
                     <form onSubmit={form.handleSubmit(editPost)}>
                         {isEdit ? <Controller
@@ -197,15 +197,15 @@ export default function PostCard({
                                 name="detail"
                                 control={form.control}
                                 render={({ field }) => (
-                                    <textarea {...field} placeholder="Type your detail here..." maxLength={250} minLength={5}
+                                    <textarea {...field} placeholder="Type your detail here..." maxLength={3000} minLength={5}
                                         className={cn("border-[#BCBCBC] border-[1px] h-[300px]",
                                             " px-[6px] py-[6px] focus:outline-none focus:ring-1 font-poppins w-full mt-2",
-                                            "overflow-hidden resize-none"
+                                            "overflow-scroll resize-none"
                                         )}
                                     ></textarea>
                                 )}
                                 disabled={isEditing}
-                            /> : <p className="whitespace-pre-line px-4">
+                            /> : <p className="whitespace-pre-line px-4 max-md:p-0 whitespace-pre-wrap">
                                 {detail}
                             </p>
                         }

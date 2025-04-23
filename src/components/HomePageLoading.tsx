@@ -1,14 +1,12 @@
 export default function HomePageLoading() {
     return <div className="fixed inset-0 flex items-center justify-center flex-col">
         <video
-            width={256}
-            height={256}
             autoPlay
             loop
             muted
             playsInline
             preload="none"
-            className="bg-[url('https://cdn-icons-png.flaticon.com/512/6172/6172527.png')] bg-center bg-no-repeat bg-contain"
+            className="bg-[url('https://cdn-icons-png.flaticon.com/512/6172/6172527.png')] bg-center bg-no-repeat bg-contain w-[256px] h-[256px] max-md:[156px] max-md:[156px]"
         >
             <source
                 src="https://cdn-icons-mp4.flaticon.com/512/6172/6172527.mp4"

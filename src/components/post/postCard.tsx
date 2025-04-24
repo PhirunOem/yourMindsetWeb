@@ -64,7 +64,7 @@ export default function PostCard({
     const [isEditing, setIsEditing] = useState<boolean>(false)
     const session = useAuth()
     const router = useRouter()
-    const isPostOwner = posted_by.id === session?.user?.id
+    const isPostOwner = posted_by.id === session?.user?.id || session?.user?.is_admin
     const totalComments = commentData?.length ?? []
     const ownerName = posted_by.name
 

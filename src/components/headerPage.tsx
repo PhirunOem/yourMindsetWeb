@@ -56,7 +56,7 @@ export default function HeaderPage() {
                             <Link href={"/termAndConditions"} className="">Term And Condition</Link>
                             <Link href={"/privacyPolicy"} className="">Privacy Policy</Link>
                             <Link href={"/aboutUs"} className="">About Us</Link>
-                            {isAuthenticated && <Link href={'/profile'}>Your Profile</Link>}
+                            {isAuthenticated && <Link href={`/profile/${userId}`}>Your Profile</Link>}
                             <div className="flex flex-row gap-4 items-center w-full mt-2">
                                 <div>
                                     <Button

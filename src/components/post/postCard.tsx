@@ -169,7 +169,7 @@ export default function PostCard({
                             open={openDialog}
                         />
                     </div>}
-                    open={isOpenMenu}
+                    isOpen={isOpenMenu}
                 /> : <></>}
             </div>
         </div>

@@ -1,23 +1,32 @@
-import { Popover } from "radix-ui";
-import React from "react";
+'use client'
+
+import * as Popover from "@radix-ui/react-popover";
+import React, { useState } from "react";
 
 interface PopoverCustomProps {
-    trigger: React.ReactElement
-    content: React.ReactElement
-    open: boolean
+    trigger: React.ReactElement;
+    content: React.ReactElement;
+    isOpen: boolean;
 }
 
 export default function PopoverCustom({
-    trigger, content, open = false
+    trigger,
+    content,
+    isOpen
 }: PopoverCustomProps) {
-    return <>
-        <Popover.Root open={open}>
-            <Popover.Trigger>
+    const [open, setOpen] = useState(isOpen);
+
+    return (
+        <Popover.Root open={open} onOpenChange={setOpen}>
+            <Popover.Trigger asChild>
                 {trigger}
             </Popover.Trigger>
-            <Popover.Content>
-                {content}
-            </Popover.Content>
+            <Popover.Portal>
+                <Popover.Content
+                >
+                    {content}
+                </Popover.Content>
+            </Popover.Portal>
         </Popover.Root>
-    </>
+    );
 }

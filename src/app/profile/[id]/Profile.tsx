@@ -150,7 +150,6 @@ export default function ProfilePage({ userId }: ProfilePageProps) {
 
                             <div className="w-[300px] max-md:w-full max-md:flex max-md:flex-col max-md:items-center max-md:text-center">
                                 <p className="font-bold text-2xl">{userInfo.name}</p>
-                                <p>{userInfo.email}</p>
                                 {
                                     isOwner && <div className="flex gap-3 w-full mt-2 max-md:justify-center">
                                         <Button

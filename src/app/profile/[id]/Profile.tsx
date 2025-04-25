@@ -20,16 +20,20 @@ import { CommentType } from "@/types/comment";
 import { PostSchema } from "@/utils";
 import { z } from "zod";
 
-export default function ProfilePage() {
+interface ProfilePageProps {
+    userId: string,
+}
+export default function ProfilePage({ userId }: ProfilePageProps) {
     const { user } = useAuth();
     const router = useRouter()
     const [postData, setPostData] = useState<PostType[]>([]);
-
+    const currentUserId = user?.id ? user?.id : ''
+    const isOwner = userId === currentUserId
 
     useEffect(() => {
         async function getPosts() {
-            if (user?.id) {
-                const { data, success } = await listPostByUserId(user?.id)
+            if (userId) {
+                const { data, success } = await listPostByUserId(userId)
                 if (!success) {
                     return;
                 }
@@ -121,21 +125,24 @@ export default function ProfilePage() {
                         />
                     </div>
 
+
                     <div className="w-[300px] max-md:w-full max-md:flex max-md:flex-col max-md:items-center max-md:text-center">
                         <p className="font-bold text-2xl">{user?.name}</p>
                         <p>{user?.email}</p>
-                        <div className="flex gap-3 w-full mt-2 max-md:justify-center">
-                            <Button
-                                title="Edit Profile"
-                                className="rounded-md"
-                                onClick={() => alert('This feature is coming soon...')}
-                            />
-                            <Button
-                                title="Log Out"
-                                onClick={handleSignOutClick}
-                                className="bg-red-500 px-2 rounded-md"
-                            />
-                        </div>
+                        {
+                            isOwner && <div className="flex gap-3 w-full mt-2 max-md:justify-center">
+                                <Button
+                                    title="Edit Profile"
+                                    className="rounded-md"
+                                    onClick={() => alert('This feature is coming soon...')}
+                                />
+                                <Button
+                                    title="Log Out"
+                                    onClick={handleSignOutClick}
+                                    className="bg-red-500 px-2 rounded-md"
+                                />
+                            </div>
+                        }
                     </div>
 
                 </div>

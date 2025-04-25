@@ -140,7 +140,7 @@ export default function PostCard({
     return <div className="shawdow-md px-8 py-4 rounded-xl bg-white border-gray-300 border max-md:px-4">
         <div className="flex justify-between items-center">
             <div className="flex gap-2 items-center">
-                <ProfileAvartar href="/" userName={ownerName} />
+                <ProfileAvartar userName={ownerName} userId={posted_by.id} />
                 <div>
                     <p className="text-base font-semibold">{ownerName}</p>
                     <p className="text-xs text-gray-500">{getRelativeTime(created_at)}</p>

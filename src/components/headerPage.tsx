@@ -18,6 +18,7 @@ import crossIcon from '@/assets/svgs/cross.svg'
 export default function HeaderPage() {
     const { user } = useAuth()
     const userName = user?.name
+    const userId = user?.id
     const router = useRouter()
     const [isAuthenticated, setIsAuthenticated] = useState<boolean>(false)
     const [isOpenMenu, setIsOpenMenu] = useState<boolean>(false)
@@ -103,7 +104,7 @@ export default function HeaderPage() {
             </div>
             <div>
                 {
-                    isAuthenticated ? <ProfileAvartar userName={userName ?? undefined} />
+                    isAuthenticated ? <ProfileAvartar userName={userName ?? undefined} userId={userId} />
                         : <Button
                             title="Sign Up"
                             className="px-4 py-2 rounded-md"

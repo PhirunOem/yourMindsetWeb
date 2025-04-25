@@ -77,7 +77,7 @@ export default function CommentCard({
                             title={'Are you sure to delete this comment?'}
                             btn2={<button className="Button red">No</button>}
                             btn1={<button className="Button mauve">yes</button>} />
-                    </div>} open={false} /> : <></>}
+                    </div>} isOpen={false} /> : <></>}
             </div>
         </div>
         <div>

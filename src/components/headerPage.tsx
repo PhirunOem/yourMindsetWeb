@@ -82,7 +82,7 @@ export default function HeaderPage() {
                             </div>
                         </div>
                     }
-                    open={isOpenMenu} />
+                    isOpen={isOpenMenu} />
             </div>
         </div>
         <div className="flex items-center gap-8 max-md:hidden">

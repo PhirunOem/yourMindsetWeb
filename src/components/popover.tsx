@@ -23,6 +23,7 @@ export default function PopoverCustom({
             </Popover.Trigger>
             <Popover.Portal>
                 <Popover.Content
+                    className="z-2000"
                 >
                     {content}
                 </Popover.Content>

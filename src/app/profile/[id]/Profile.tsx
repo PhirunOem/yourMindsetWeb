@@ -19,6 +19,7 @@ import { postComment } from "@/actions/postComment";
 import { CommentType } from "@/types/comment";
 import { PostSchema } from "@/utils";
 import { z } from "zod";
+import { getUserProfile } from "@/actions/getUserProfile";
 
 interface ProfilePageProps {
     userId: string,
@@ -29,10 +30,25 @@ export default function ProfilePage({ userId }: ProfilePageProps) {
     const [postData, setPostData] = useState<PostType[]>([]);
     const currentUserId = user?.id ? user?.id : ''
     const isOwner = userId === currentUserId
+    const [userInfo, setUserInfo] = useState<{ email: string, name: string, id: string }>({
+        email: '',
+        name: '',
+        id: ''
+    })
 
     useEffect(() => {
+
         async function getPosts() {
             if (userId) {
+                const dataResponse = await getUserProfile(userId)
+                const userObject = dataResponse?.data
+                if (userObject) {
+                    setUserInfo({
+                        email: userObject.email,
+                        name: userObject.name,
+                        id: userObject.id,
+                    })
+                }
                 const { data, success } = await listPostByUserId(userId)
                 if (!success) {
                     return;
@@ -120,15 +136,15 @@ export default function ProfilePage({ userId }: ProfilePageProps) {
 
                     <div className="border-r-[2px] pr-8 max-md:border-none max-md:pr-0 max-md:mb-4 max-md:flex max-md:justify-center max-md:items-center">
                         <ProfileAvartar
-                            userName={user?.name}
+                            userName={userInfo.name}
                             className="w-[100px] h-[100px] border-[3px] border-white max-md:w-[60px] max-md:h-[60px]"
                         />
                     </div>
 
 
                     <div className="w-[300px] max-md:w-full max-md:flex max-md:flex-col max-md:items-center max-md:text-center">
-                        <p className="font-bold text-2xl">{user?.name}</p>
-                        <p>{user?.email}</p>
+                        <p className="font-bold text-2xl">{userInfo.name}</p>
+                        <p>{userInfo.email}</p>
                         {
                             isOwner && <div className="flex gap-3 w-full mt-2 max-md:justify-center">
                                 <Button
@@ -149,7 +165,7 @@ export default function ProfilePage({ userId }: ProfilePageProps) {
             </div>
             <div className="flex justify-center">
                 <div className="w-3/4 max-md:w-full max-md:px-2 py-4">
-                    <p className="font-bold text-2xl">My Posts</p>
+                    <p className="font-bold text-2xl">{isOwner ? 'My Posts' : 'Posts'}</p>
                     {postData.length > 0 ? (
                         postData.map((item: PostType, index: number) => (
                             <div key={index} className="mt-2">

@@ -208,7 +208,7 @@ export default function PostCard({
                                 )}
                                 disabled={isEditing}
                             /> : <div className="whitespace-pre-line px-4 max-md:p-0 whitespace-pre-wrap">
-                                <SeeMoreText wordLimit={50} text={detail} />
+                                <SeeMoreText charLimit={100} text={detail} />
                             </div>
                         }
                         {

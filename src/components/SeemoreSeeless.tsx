@@ -3,25 +3,27 @@ import React, { useMemo, useState } from "react";
 
 interface SeeMoreTextProps {
     text: string;
-    wordLimit?: number;
+    charLimit?: number;
 }
 
-const SeeMoreText: React.FC<SeeMoreTextProps> = ({ text, wordLimit = 100 }) => {
+const SeeMoreText: React.FC<SeeMoreTextProps> = ({ text, charLimit = 100 }) => {
     const [expanded, setExpanded] = useState(false);
 
-    const words = text.split(" ");
-    const isLong = words.length > wordLimit;
+    const isLong = text.length > charLimit;
 
-    const displayedText: string = useMemo(() => {
-        return expanded ? text : words.slice(0, wordLimit).join(" ") + (isLong ? "..." : "");
-    }, [expanded])
+    const displayedText = useMemo(() => {
+        return expanded ? text : text.slice(0, charLimit) + (isLong ? "..." : "");
+    }, [expanded, text, charLimit, isLong]);
 
     return (
         <div className="whitespace-pre-wrap text-base font-normal leading-relaxed">
-            <div onClick={() => {
-                if (!expanded) return;
-                setExpanded(false)
-            }} className={cn(expanded && 'cursor-pointer')}>
+            <div
+                onClick={() => {
+                    if (!expanded) return;
+                    setExpanded(false);
+                }}
+                className={cn(expanded && "cursor-pointer")}
+            >
                 {displayedText}
             </div>
             {isLong && (

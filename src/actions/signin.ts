@@ -29,7 +29,7 @@ export const signin = async (values: z.infer<typeof SigninSchema>, next = '/') =
     if (!res.ok) {
       return {
         success: false,
-        message: data.message || 'Something went wrong.'
+        message: data.message || data.detail || 'Something went wrong.'
       }
     }
     cookieStore.set("accessToken", data?.access, {

@@ -24,7 +24,7 @@ export async function POST(req: Request) {
 
         if (!res.ok) {
             return NextResponse.json(
-                { success: false, message: data.message || 'Signup failed.' },
+                { success: false, message: data['email'][0] || 'Signup failed.' },
                 { status: res.status }
             );
         }

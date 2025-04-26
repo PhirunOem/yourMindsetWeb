@@ -4,7 +4,7 @@ import type { NextRequest } from 'next/server';
 export function middleware(request: NextRequest) {
     const token = request.cookies.get("accessToken");
 
-    if (!token && request.nextUrl.pathname.startsWith("/profile")) {
+    if (!token && request.nextUrl.pathname.startsWith("/profile") || request.nextUrl.pathname.startsWith("/post")) {
         return NextResponse.redirect(new URL("/auth/signin", request.url));
     }
 
@@ -12,5 +12,5 @@ export function middleware(request: NextRequest) {
 }
 
 export const config = {
-    matcher: ["/profile/:path*"], // secure routes
+    matcher: ["/profile/:path*"],
 };

@@ -1,48 +1,58 @@
 import * as React from "react";
-import { AlertDialog } from "radix-ui";
+import * as AlertDialogPrimitive from "@radix-ui/react-alert-dialog";
 import "./alertDialogStyles.css";
 
 interface AlertDialogProps {
-    trigger: React.ReactElement
-    title: string
-    content?: string
-    btn1?: React.ReactElement
-    btn2?: React.ReactElement
-    open?: boolean
-
+    trigger: React.ReactElement | null;
+    title: string;
+    content?: string;
+    btn1?: React.ReactElement;
+    btn2?: React.ReactElement;
+    open?: boolean;
+    setOpen?: (open: boolean) => void;
 }
+
 const AlertDialogCustom = ({
     trigger,
     title,
     content,
     btn1,
     btn2,
-    open
+    open,
+    setOpen,
 }: AlertDialogProps) => (
-    <AlertDialog.Root open={open}>
-        <AlertDialog.Trigger asChild>
-            {trigger}
-        </AlertDialog.Trigger>
-        <AlertDialog.Portal>
-            <AlertDialog.Overlay className="AlertDialogOverlay" />
-            <AlertDialog.Content className="AlertDialogContent">
-                <AlertDialog.Title className="AlertDialogTitle">
+    <AlertDialogPrimitive.Root open={open} onOpenChange={setOpen}>
+        {trigger && (
+            <AlertDialogPrimitive.Trigger asChild>
+                {trigger}
+            </AlertDialogPrimitive.Trigger>
+        )}
+        <AlertDialogPrimitive.Portal>
+            <AlertDialogPrimitive.Overlay className="AlertDialogOverlay" />
+            <AlertDialogPrimitive.Content className="AlertDialogContent">
+                <AlertDialogPrimitive.Title className="AlertDialogTitle">
                     {title}
-                </AlertDialog.Title>
-                <AlertDialog.Description className="AlertDialogDescription">
-                    {content}
-                </AlertDialog.Description>
+                </AlertDialogPrimitive.Title>
+                {content && (
+                    <AlertDialogPrimitive.Description className="AlertDialogDescription">
+                        {content}
+                    </AlertDialogPrimitive.Description>
+                )}
                 <div style={{ display: "flex", gap: 25, justifyContent: "flex-end" }}>
-                    <AlertDialog.Cancel asChild>
-                        {btn1}
-                    </AlertDialog.Cancel>
-                    <AlertDialog.Action asChild>
-                        {btn2}
-                    </AlertDialog.Action>
+                    {btn1 && (
+                        <AlertDialogPrimitive.Cancel asChild>
+                            {btn1}
+                        </AlertDialogPrimitive.Cancel>
+                    )}
+                    {btn2 && (
+                        <AlertDialogPrimitive.Action asChild>
+                            {btn2}
+                        </AlertDialogPrimitive.Action>
+                    )}
                 </div>
-            </AlertDialog.Content>
-        </AlertDialog.Portal>
-    </AlertDialog.Root>
+            </AlertDialogPrimitive.Content>
+        </AlertDialogPrimitive.Portal>
+    </AlertDialogPrimitive.Root>
 );
 
 export default AlertDialogCustom;

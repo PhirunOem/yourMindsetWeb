@@ -62,8 +62,8 @@ export default function SignIn() {
             setError(result.message)
             setIsSubmitting(false)
         } else {
-            setIsSubmitting(false)
             setAuthenticated(true)
+            setIsSubmitting(false)
             setError('')
             return true
         }

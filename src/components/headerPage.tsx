@@ -40,49 +40,41 @@ export default function HeaderPage() {
             </div>
             <div>
                 <PopoverCustom
-                    trigger={
-                        <Image
-                            src={isOpenMenu ? crossIcon : lineMenuIcon}
-                            alt={"Menu"}
-                            width={20}
-                            height={20}
-                            onClick={handleOpenMenuClick}
-                        />
-                    }
-                    content={
-                        <div className={cn("flex flex-col px-4 py-2 justify-start w-[280px] items-start gap-2",
-                            "border border-gray-300 shadow-md mr-2 rounded-md bg-white mt-2 z-1000")}>
-                            <Link href={"/testLevel"} className="">Test</Link>
-                            <Link href={"/termAndConditions"} className="">Term And Condition</Link>
-                            <Link href={"/privacyPolicy"} className="">Privacy Policy</Link>
-                            <Link href={"/aboutUs"} className="">About Us</Link>
-                            {isAuthenticated && <Link href={`/profile/${userId}`}>Your Profile</Link>}
-                            <div className="flex flex-row gap-4 items-center w-full mt-2">
-                                <div>
-                                    <Button
-                                        title="Create Post"
-                                        className={cn("px-4 py-2 rounded-md", !isAuthenticated && "bg-gray-400 text-[#00000077] opacity-75",
-                                            "max-md:px-2 max-md:py-1"
-                                        )}
-                                        disabled={!isAuthenticated}
-                                        onClick={() => router.push('/post')}
-                                    />
-                                </div>
-                                <div>
-                                    {
-                                        !isAuthenticated &&
-                                        <Button
-                                            title="Sign Up"
-                                            className="px-4 py-2 rounded-md max-md:px-2 max-md:py-1 max-md:text-m"
-                                            onClick={() => router.push('/auth/signup')}
-                                        />
-                                    }
-                                </div>
-
+                    trigger={<Image
+                        src={isOpenMenu ? crossIcon : lineMenuIcon}
+                        alt={"Menu"}
+                        width={20}
+                        height={20}
+                        onClick={handleOpenMenuClick} />}
+                    content={<div className={cn("flex flex-col px-4 py-2 justify-start w-[280px] items-start gap-2",
+                        "border border-gray-300 shadow-md mr-2 rounded-md bg-white mt-2 z-1000")}>
+                        <Link href={"/testLevel"} className="">Test</Link>
+                        <Link href={"/termAndConditions"} className="">Term And Condition</Link>
+                        <Link href={"/privacyPolicy"} className="">Privacy Policy</Link>
+                        <Link href={"/aboutUs"} className="">About Us</Link>
+                        {isAuthenticated && <Link href={`/profile/${userId}`}>Your Profile</Link>}
+                        <div className="flex flex-row gap-4 items-center w-full mt-2">
+                            <div>
+                                <Button
+                                    title="Create Post"
+                                    className={cn("px-4 py-2 rounded-md", !isAuthenticated && "bg-gray-400 text-[#00000077] opacity-75",
+                                        "max-md:px-2 max-md:py-1"
+                                    )}
+                                    disabled={!isAuthenticated}
+                                    onClick={() => router.push('/post')} />
                             </div>
+                            <div>
+                                {!isAuthenticated &&
+                                    <Button
+                                        title="Sign Up"
+                                        className="px-4 py-2 rounded-md max-md:px-2 max-md:py-1 max-md:text-m"
+                                        onClick={() => router.push('/auth/signup')} />}
+                            </div>
+
                         </div>
-                    }
-                    isOpen={isOpenMenu} />
+                    </div>}
+                    isOpen={isOpenMenu}
+                    setIsOpen={() => { }} />
             </div>
         </div>
         <div className="flex items-center gap-8 max-md:hidden">

@@ -21,3 +21,10 @@ export type PostType = {
     image: string | null,
     comments: Comments[]
 }
+
+export type PostResponseType = {
+    count: number,
+    next: string | null,
+    previous: string | null,
+    results: PostType[],
+}

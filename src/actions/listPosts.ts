@@ -1,6 +1,6 @@
 'use server'
 
-import { PostType } from "@/types/post";
+import { PostResponseType, PostType } from "@/types/post";
 
 export const listPost = async (url: string) => {
     try {
@@ -12,11 +12,11 @@ export const listPost = async (url: string) => {
             throw new Error(`Error: ${postResponse.status}`);
         }
 
-        const posts: PostType[] = await postResponse.json();
+        const posts: PostResponseType = await postResponse.json();
         return {
             message: 'Retrieve successfull!',
             success: true,
-            data: posts
+            data: posts.results
         };
     } catch (e) {
         console.error("Fetch error:", e);

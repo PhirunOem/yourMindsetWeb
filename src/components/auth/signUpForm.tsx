@@ -38,6 +38,11 @@ export default function SignUpForm() {
     const onSubmit = async (values: z.infer<typeof SignupSchema>) => {
         setIsSubmitting(true)
         setError('')
+
+        if (typeof document !== 'undefined') {
+            const active = document.activeElement as HTMLElement | null;
+            active?.blur();
+        }
         const request_data = {
             name: values.name,
             email: values.email,

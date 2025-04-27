@@ -49,6 +49,11 @@ export default function SignIn() {
 
     const onSubmit = async (values: z.infer<typeof SigninSchema>) => {
         setIsSubmitting(true);
+
+        if (typeof document !== 'undefined') {
+            const active = document.activeElement as HTMLElement | null;
+            active?.blur();
+        }
         const res = await fetch('/api/signin', {
             method: 'POST',
             body: JSON.stringify(values),

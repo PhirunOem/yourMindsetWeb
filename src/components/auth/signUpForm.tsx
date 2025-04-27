@@ -18,6 +18,7 @@ import { cn, SignupSchema } from "@/utils";
 import OrSeparator from "./orSeparator";
 import Link from "next/link";
 import crossIcon from '@/assets/svgs/cross.svg'
+import { AlertSuccess } from "@/utils/alertSuccess";
 
 
 export default function SignUpForm() {
@@ -59,6 +60,7 @@ export default function SignUpForm() {
                 setError(data.message)
                 setIsSubmitting(false)
             } else {
+                AlertSuccess('Your account is registered successfully.')
                 router.push('/auth/signin')
                 setIsSubmitting(false)
                 setError('')

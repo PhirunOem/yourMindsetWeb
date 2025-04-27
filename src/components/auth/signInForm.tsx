@@ -19,8 +19,7 @@ import { signin } from "@/actions/signin";
 import logo from '@/assets/svgs/logo.svg'
 import crossIcon from '@/assets/svgs/cross.svg'
 import Link from "next/link";
-
-
+import { AlertSuccess } from "@/utils/alertSuccess";
 
 export default function SignIn() {
     const searchParams = useSearchParams();
@@ -67,6 +66,7 @@ export default function SignIn() {
             setError(result.message)
             setIsSubmitting(false)
         } else {
+            AlertSuccess('Logged in successfully.')
             setAuthenticated(true)
             setIsSubmitting(false)
             setError('')

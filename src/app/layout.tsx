@@ -3,6 +3,7 @@ import { getServerUser } from "@/lib/auth";
 import { AuthProvider } from "@/context/AuthContext";
 import { Poppins } from 'next/font/google';
 import "./globals.css";
+import { ToastContainer } from 'react-toastify';
 
 
 const poppins = Poppins({
@@ -25,6 +26,7 @@ export default async function RootLayout({ children }: { children: React.ReactNo
       <body>
         <AuthProvider initialUser={user}>
           {children}
+          <ToastContainer />
         </AuthProvider>
       </body>
     </html>

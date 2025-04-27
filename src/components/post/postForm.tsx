@@ -14,6 +14,7 @@ import { useRouter } from "next/navigation";
 import Link from "next/link";
 import Image from "next/image"
 import backIcon from '@/assets/svgs/backIcon.svg'
+import { AlertSuccess } from "@/utils/alertSuccess";
 
 export default function PostForm() {
     const [error, setError] = useState("");
@@ -40,6 +41,7 @@ export default function PostForm() {
                 // setError(result.error)
                 setIsSubmitting(false)
             } else {
+                AlertSuccess('Your post is created successfully.')
                 setIsSubmitting(false)
                 setError('')
                 router.push('/')

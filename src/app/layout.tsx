@@ -12,7 +12,7 @@ const poppins = Poppins({
 });
 
 export const metadata = {
-  title: "Your Mindset",
+  title: "Mindset",
   description: "Show you about the motivation.",
   icons: {
     icon: "/logo.svg",

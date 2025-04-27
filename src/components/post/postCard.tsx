@@ -198,7 +198,7 @@ export default function PostCard({
                 <div className="px-6 py-4 max-md:px-2">
                     {!isEdit ? (
                         <div>
-                            <p className="text-xl font-bold py-4 max-md:text-md">{title}</p>
+                            <p className="text-xl font-bold py-4 max-md:text-sm">{title}</p>
                             <div className="whitespace-pre-wrap px-4 max-md:p-0">
                                 <SeeMoreText charLimit={100} text={detail} />
                             </div>

@@ -23,7 +23,7 @@ export default function AboutUs() {
             <p className="mt-5 text-lg"><strong>Welcome to MINDSET</strong>—a space built on honesty, empathy, and the power of shared experiences.</p>
         </div>
         <div className="flex justify-center items-center mt-10">
-            <div className="flex flex-col gap-10 max-md:p-4 w-3/4">
+            <div className="flex flex-col gap-10 max-md:p-4 w-3/4 max-md:w-full">
                 <div className="flex flex-col md:flex-row items-center gap-8">
                     <div className="flex-1">
                         <Image src={aboutUs2} alt="About Us Image 2" width={350} height={350} className="rounded-xl shadow-lg object-cover" />

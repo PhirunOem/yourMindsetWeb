@@ -17,7 +17,7 @@ export const SigninSchema = z.object({
 export const SignupSchema = z.object({
   name: z.string().min(1, {
     message: 'Username is required'
-  }),
+  }).max(10, { message: 'User name is too long' }),
   email: z
     .string()
     .min(1, {

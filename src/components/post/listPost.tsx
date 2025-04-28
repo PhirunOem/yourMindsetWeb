@@ -12,14 +12,14 @@ import { PostType } from "@/types/post";
 import { CommentType } from "@/types/comment";
 import { useAuth } from "@/context/AuthContext";
 import { listPost } from "@/actions/listPosts";
-import HomePageLoading from "../HomePageLoading";
+import LoadingText from "../LoadingText";
 
 export default function ListPosts() {
     const [postData, setPostData] = useState<PostType[]>([]);
     const session = useAuth()
     const url = `${process.env.NEXT_PUBLIC_API_BASE_URL}/post/list-posts-without-auth/`;
     const { data, error } = useSWR(url, listPost)
-    if (!data) return <HomePageLoading />
+    if (!data) return <LoadingText className="min-h-svw pt-16" />
     if (error) return <div className="flex flex-col justify-center items-center text-red-500">Something went wrong. We are so sorry for that.</div>
 
     async function handleCreateComment(content: CommentType) {

@@ -19,7 +19,7 @@ export default function ListPosts() {
     const session = useAuth()
     const url = `${process.env.NEXT_PUBLIC_API_BASE_URL}/post/list-posts-without-auth/`;
     const { data, error } = useSWR(url, listPost)
-    if (!data) return <LoadingText className="min-h-svw pt-16" />
+    if (!data) return <LoadingText className="max-md:min-h-svw pt-32 max-md:pt-16" />
     if (error) return <div className="flex flex-col justify-center items-center text-red-500">Something went wrong. We are so sorry for that.</div>
 
     async function handleCreateComment(content: CommentType) {

@@ -66,9 +66,9 @@ export default function HeaderPage() {
                             <div>
                                 {!isAuthenticated &&
                                     <Button
-                                        title="Sign Up"
-                                        className="px-4 py-2 rounded-md max-md:px-2 max-md:py-1 max-md:text-m"
-                                        onClick={() => router.push('/auth/signup')} />}
+                                        title="Log In"
+                                        className="px-4 py-2 rounded-md max-md:px-3 max-md:py-1 max-md:text-m"
+                                        onClick={() => router.push('/auth/signin')} />}
                             </div>
 
                         </div>
@@ -98,9 +98,9 @@ export default function HeaderPage() {
                 {
                     isAuthenticated ? <ProfileAvartar userName={userName ?? undefined} userId={userId} />
                         : <Button
-                            title="Sign Up"
+                            title="Log In"
                             className="px-4 py-2 rounded-md"
-                            onClick={() => router.push('/auth/signup')}
+                            onClick={() => router.push('/auth/signin')}
                         />
                 }
             </div>

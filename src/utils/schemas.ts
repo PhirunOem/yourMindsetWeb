@@ -57,3 +57,8 @@ export const PostSchema = z.object({
   detail: z.string().min(1, { message: 'Detail is required' }).max(3000),
   post_id: z.string().optional()
 })
+
+export const CommentSchema = z.object({
+  content: z.string().min(1, { message: 'Content is required' }),
+  comment_id: z.string().optional()
+})

@@ -295,7 +295,7 @@ export default function PostCard({
                         <div>
                             {!isEmptyComment ? (
                                 isLoading ? (
-                                    <p className="text-gray-500 text-xs">Commenting...</p>
+                                    <p className="text-gray-500 text-xs">Posting...</p>
                                 ) : (
                                     <Image src={SentIcon} alt="Send Icon" width={20} height={20} className="cursor-pointer" onClick={handleCreateComment} />
                                 )
@@ -312,7 +312,7 @@ export default function PostCard({
                             commentData.map((item: any, index: number) => (
                                 <div className="mt-2" key={index}>
                                     <PostComment
-                                        id={""}
+                                        id={item.id}
                                         ownerName={item['commented_by'].name}
                                         content={item.content}
                                         createdAt={item.created_at}

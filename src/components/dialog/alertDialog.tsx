@@ -30,7 +30,7 @@ const AlertDialogCustom = ({
         <AlertDialogPrimitive.Portal>
             <AlertDialogPrimitive.Overlay className="AlertDialogOverlay" />
             <AlertDialogPrimitive.Content className="AlertDialogContent">
-                <AlertDialogPrimitive.Title className="AlertDialogTitle">
+                <AlertDialogPrimitive.Title className="AlertDialogTitle pb-2">
                     {title}
                 </AlertDialogPrimitive.Title>
                 {content && (

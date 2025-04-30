@@ -1,17 +1,14 @@
 'use server'
 
-import { cookies } from 'next/headers';
+import { cookies } from "next/headers";
 
-import { z } from 'zod';
+interface DeleteCommentProps {
+    commentId: string,
+}
+export const deleteComment = async ({
+    commentId
+}: DeleteCommentProps) => {
 
-import { PostSchema } from './../utils/schemas';
-
-type PostSchemaType = z.infer<typeof PostSchema>;
-export const editPost = async ({
-    title,
-    detail,
-    post_id
-}: PostSchemaType) => {
     try {
         const token = (await cookies()).get('accessToken')
         if (!token)
@@ -19,12 +16,8 @@ export const editPost = async ({
                 success: false,
                 error: 'Session is not avaliable',
             };
-        const param = JSON.stringify({ post_id: post_id });
-        const url = `${process.env.API_BASE_URL}/post/edit-post/?param=${param}`;
-        const body = JSON.stringify({
-            'title': title,
-            'detail': detail
-        })
+        const param = JSON.stringify({ "delete_id": commentId })
+        const url = `${process.env.API_BASE_URL}/comment/edit-comment/?param=${param}`;
 
         const postResponse = await fetch(url, {
             method: 'POST',
@@ -32,16 +25,15 @@ export const editPost = async ({
                 'Content-Type': 'application/json',
                 Authorization: `Bearer ${token.value}`,
             },
-            body
         });
-
         if (!postResponse.ok) {
             return;
         }
+
         const posts = await postResponse.json();
         return {
             success: true,
-            message: posts.messgae || 'Post has been created successfully!'
+            message: posts.messgae || 'Comment has been deleted successfully!'
         };
     } catch (e) {
         console.error("Fetch error:", e);

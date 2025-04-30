@@ -175,7 +175,7 @@ export default function ProfilePage({ userId }: ProfilePageProps) {
                 </div>
                 <div className="flex justify-center">
                     <div className="w-3/4 max-md:w-full max-md:px-2 py-4 max-md:pb-4 max-md:pt-0">
-                        <p className="font-bold text-2xl max-md:text-md">{isOwner ? 'My Posts' : `${userInfo.name}'s Posts`}</p>
+                        <p className="font-bold text-2xl max-md:text-md max-md:font-semibold pb-2">{isOwner ? 'My Posts' : `${userInfo.name}'s Posts`}</p>
                         {postData.length > 0 ? (
                             postData.map((item: PostType, index: number) => (
                                 <div key={index} className="mt-2">
